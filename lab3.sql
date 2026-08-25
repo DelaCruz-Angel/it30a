@@ -8,9 +8,10 @@ CREATE TABLE books (
 );
 
 INSERT INTO books (book_title,book_author,book_category) VALUES
-("Harry Potter","The hobbit","Pride and Prejudice"),
-("The great gatsby","1984","The mockingbird"),
-("The catcher","The lord of the rings","Crime and punishment");
+("Harry Potter","J.K.Rowling","Fantasy"),
+("The great gatsby","F.Scott Fitzgerald","Tragedy"),
+("The catcher","J.D.Salinger","Fiction");
+
 
 
 CREATE TABLE borrow(
