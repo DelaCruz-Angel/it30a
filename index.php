@@ -99,6 +99,14 @@ $students = $stmt->fetchAll();
                     </tbody>
                     </table>
                     <?php endif; ?>
+                    <?php if($section==='books'): ?>
+                        <h1>Books</h1>
+                        <?php endif; ?>
+
+                        <?php if($section==='borrow'): ?>
+                        <h1>Borrow</h1>
+                        <?php endif; ?>
+
     
 </body>
 </html>
