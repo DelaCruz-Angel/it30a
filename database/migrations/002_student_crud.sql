@@ -52,15 +52,3 @@ student_first_name = 'Angel',
 student_last_name = 'Cruz'
 WHERE student_id = 1;
 
-UPDATE books
-SET 
-book_title = 'Harry Potter and the Sorcerer''s Stone', 
-book_author = 'J.K. Rowling'
-WHERE book_id = 1;
-
-SELECT 
-book_title,
-book_author
-FROM books
-WHERE book_id = 1
-LIMIT 1;
