@@ -15,11 +15,29 @@ $options = [
 ];
 
 try{
-    $pdo = new PDO($dns,$user,$pass,$options);
-}catch(PDOExceptiopn $e){
+    $pdo = new PDO($dsn,$user,$pass,$options);
+}catch(PDOException $e){
     die("Database connection failed" . $e->getMessage());
 }
 
+//Session
+session_start();
+
+//Determine current section
+$section = $_GET['section'] ?? 'students';
+
+//CRUDE Operations
+$actions = $_GET['action'] ?? '';
+
+//students
+
+//fetch students
+if($section === 'students'){
+    $stmt = $pdo->query(" SELECT * FROM students ORDER BY student_id DESC");
+
+
+$students = $stmt->fetchAll();
+}
 
 ?>
 
@@ -31,7 +49,56 @@ try{
     <title>Library System</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>Simple Library System</h1>
+    <nav>
+        <a href="index.php?section=students">Students</a>
+        <a href="index.php?section=books">Books</a>
+        <a href="index.php?section=borrow">Borrow</a>
+    </nav>
+    <hr>
+    <?php if($section==='students'): ?>
+        <h1>Students</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Course</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($students as $student): ?>
+                            <tr>
+                                <td>
+                                    <?= htmlspecialchars($student['student_id']) ?>
+                                    </td>
+                                    <td>
+                                    <?= htmlspecialchars($student['student_first_name']) ?>
+                                    </td>
+                                    <td>
+                                    <?= htmlspecialchars($student['student_last_name']) ?>
+                                    </td>
+                                    <td>
+                                    <?= htmlspecialchars($student['student_course']) ?>
+                                    </td>
+                                    <td>
+                                    <?= htmlspecialchars($student['student_created_at']) ?>
+                                    </td>
+                                    <td>
+                                        <a>Edit</a>
+
+                                        <a>Delete</a>
+                                    </td>
+
+                                    </tr>
+                    
+                    <?php endforeach?>
+                    </tbody>
+                    </table>
+                    <?php endif; ?>
     
 </body>
 </html>
